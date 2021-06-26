@@ -70,9 +70,9 @@ class _ResetScreenState extends State<ResetScreen> {
                     child: Center(
                       child: InkWell(
                         onTap: () {
-                          final FormState = _formKey.currentState;
-                          if (FormState.validate()) {
-                            FormState.save();
+                          final formState = _formKey.currentState;
+                          if (formState.validate()) {
+                            formState.save();
                             try {
                               _auth.sendPasswordResetEmail(email: _email);
                               Navigator.of(context).pop();

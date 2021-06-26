@@ -3,13 +3,15 @@
     <!-- Flutter needs it to communicate with the running application
          to allow setting breakpoints, to provide hot reload, etc.
     -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- <uses-permission android:name="android.permission.INTERNET"/> -->
 </manifest>
 
 <?xml version="1.0" encoding="utf-8"?>
     <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.example.android.multidex.myapplication">
         <application
+            android:usesCleartextTraffic="true"
+
             ...
             android:name="androidx.multidex.MultiDexApplication">
 

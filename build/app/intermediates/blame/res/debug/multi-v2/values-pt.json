@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Ahmed\\AndroidStudioProjects\\New folder\\hand_speech\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-pt\\values-pt.xml",
+            "outputFile": "C:\\Users\\EXPRESS\\flutterprojects\\hand_speech\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-pt\\values-pt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Ahmed\\.gradle\\caches\\transforms-2\\files-2.1\\9b00677760d6283a6369689c1838d398\\res\\values-pt\\values-pt.xml",
+                    "source": "C:\\Users\\EXPRESS\\.gradle\\caches\\transforms-2\\files-2.1\\c3fc3d20209d62897522af26b47e10f3\\res\\values-pt\\values-pt.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

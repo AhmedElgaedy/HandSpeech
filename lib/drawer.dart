@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hand_speech/dictionaryScreen.dart';
 import 'package:hand_speech/profileScreen.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -71,12 +71,15 @@ class MainDrawer extends StatelessWidget {
       ),
 
       ListTile(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => DictionaryScreen()));
+        },
         leading: Icon(
           Icons.assessment,
           color: Colors.black,
         ),
-        title: Text("Your Dashboard"),
+        title: Text("Your dictionary"),
       ),
 
       ListTile(

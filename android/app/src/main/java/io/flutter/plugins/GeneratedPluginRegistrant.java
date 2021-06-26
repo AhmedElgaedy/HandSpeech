@@ -15,11 +15,14 @@ import io.flutter.embedding.engine.plugins.shim.ShimPluginRegistry;
 public final class GeneratedPluginRegistrant {
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
     ShimPluginRegistry shimPluginRegistry = new ShimPluginRegistry(flutterEngine);
+      io.flutter.plugins.firebase.cloudfirestore.CloudFirestorePlugin.registerWith(shimPluginRegistry.registrarFor("io.flutter.plugins.firebase.cloudfirestore.CloudFirestorePlugin"));
       io.flutter.plugins.firebaseauth.FirebaseAuthPlugin.registerWith(shimPluginRegistry.registrarFor("io.flutter.plugins.firebaseauth.FirebaseAuthPlugin"));
       io.flutter.plugins.firebase.core.FirebaseCorePlugin.registerWith(shimPluginRegistry.registrarFor("io.flutter.plugins.firebase.core.FirebaseCorePlugin"));
+      io.flutter.plugins.firebase.database.FirebaseDatabasePlugin.registerWith(shimPluginRegistry.registrarFor("io.flutter.plugins.firebase.database.FirebaseDatabasePlugin"));
       io.flutter.plugins.firebase.storage.FirebaseStoragePlugin.registerWith(shimPluginRegistry.registrarFor("io.flutter.plugins.firebase.storage.FirebaseStoragePlugin"));
     flutterEngine.getPlugins().add(new io.flutter.plugins.flutter_plugin_android_lifecycle.FlutterAndroidLifecyclePlugin());
     flutterEngine.getPlugins().add(new io.flutter.plugins.imagepicker.ImagePickerPlugin());
     flutterEngine.getPlugins().add(new io.flutter.plugins.pathprovider.PathProviderPlugin());
+    flutterEngine.getPlugins().add(new io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin());
   }
 }

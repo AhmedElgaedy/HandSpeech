@@ -44,7 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
             icon: Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => homeScreen()));
+                  MaterialPageRoute(builder: (context) => HomeScreen()));
             }),
         title: Text('User Profile'),
         centerTitle: true,

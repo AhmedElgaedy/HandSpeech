@@ -19,7 +19,7 @@ class _SignupScreenState extends State<SignupScreen> {
     _auth.onAuthStateChanged.listen((user) {
       if (user != null) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => homeScreen()));
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
       }
     });
 
@@ -213,9 +213,9 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   Future<void> signUp() async {
-    final FormState = _formKey.currentState;
-    if (FormState.validate()) {
-      FormState.save();
+    final formState = _formKey.currentState;
+    if (formState.validate()) {
+      formState.save();
       try {
         FirebaseUser user = await _auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
@@ -225,7 +225,7 @@ class _SignupScreenState extends State<SignupScreen> {
           user.updateProfile(updateUser);
         }
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => homeScreen()));
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
       } catch (e) {
         showError("e.errormessage");
       }

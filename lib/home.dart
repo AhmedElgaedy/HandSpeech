@@ -4,12 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hand_speech/LogInScreen.dart';
 import 'package:hand_speech/drawer.dart';
 
-class homeScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _homeScreenState createState() => _homeScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _homeScreenState extends State<homeScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isloggedIn = false;
   FirebaseUser user;
@@ -346,89 +346,3 @@ class _homeScreenState extends State<homeScreen> {
     );
   }
 }
-
-// class MainDrawer extends StatelessWidget {
-//   const MainDrawer({Key key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(children: [
-//       Container(
-//         child: Padding(
-//           padding: EdgeInsets.only(top: 50.0),
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             crossAxisAlignment: CrossAxisAlignment.center,
-//             children: [
-//               CircleAvatar(
-//                 radius: 50.0,
-//                 backgroundImage: NetworkImage(
-//                     'https://scx1.b-cdn.net/csz/news/800a/2017/signlanguage.png'),
-//               ),
-//               SizedBox(
-//                 height: 5.0,
-//               ),
-//               Text(
-//                 "User name",
-//                 style: TextStyle(
-//                   fontSize: 22.0,
-//                   fontWeight: FontWeight.w800,
-//                 ),
-//               ),
-//               SizedBox(
-//                 height: 5.0,
-//               ),
-//               Text(
-//                 "speaker / deaf ",
-//                 style: TextStyle(
-//                   fontSize: 16.0,
-//                   fontWeight: FontWeight.w400,
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//       SizedBox(
-//         height: 20.0,
-//       ),
-//       //Now let's Add the button for the Menu
-//       //and let's copy that and modify it
-//       ListTile(
-//         onTap: () {},
-//         leading: Icon(
-//           Icons.person,
-//           color: Colors.black,
-//         ),
-//         title: Text("Your Profile"),
-//       ),
-
-//       ListTile(
-//         onTap: () {},
-//         leading: Icon(
-//           Icons.inbox,
-//           color: Colors.black,
-//         ),
-//         title: Text("Your Inbox"),
-//       ),
-
-//       ListTile(
-//         onTap: () {},
-//         leading: Icon(
-//           Icons.assessment,
-//           color: Colors.black,
-//         ),
-//         title: Text("Your Dashboard"),
-//       ),
-
-//       ListTile(
-//         onTap: () {},
-//         leading: Icon(
-//           Icons.settings,
-//           color: Colors.black,
-//         ),
-//         title: Text("Settings"),
-//       ),
-//     ]);
-//   }
-// }

@@ -21,7 +21,7 @@ class _LogInScreenState extends State<LogInScreen> {
     _auth.onAuthStateChanged.listen((user) {
       if (user != null) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => homeScreen()));
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
       }
     });
 
@@ -231,14 +231,14 @@ class _LogInScreenState extends State<LogInScreen> {
   }
 
   Future<void> logIn() async {
-    final FormState = _formKey.currentState;
-    if (FormState.validate()) {
-      FormState.save();
+    final formState = _formKey.currentState;
+    if (formState.validate()) {
+      formState.save();
       try {
         FirebaseUser user = await _auth.signInWithEmailAndPassword(
             email: _email, password: _password);
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => homeScreen()));
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
       } catch (e) {
         showError("e.errormessage");
       }
