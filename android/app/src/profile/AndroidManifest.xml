@@ -1,0 +1,29 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.hand_speech">
+    <!-- Flutter needs it to communicate with the running application
+         to allow setting breakpoints, to provide hot reload, etc.
+    -->
+    <!-- <uses-permission android:name="android.permission.INTERNET"/> -->
+</manifest>
+
+<?xml version="1.0" encoding="utf-8"?>
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.example.android.multidex.myapplication">
+        <application
+            android:usesCleartextTraffic="true"
+
+            ...
+            android:name="androidx.multidex.MultiDexApplication">
+
+            <!-- If you are using support libraries use android:name="android.support.multidex.MultiDexApplication" -->
+
+            <!--If you are using your own custom Application class then extend -->
+            <!--MultiDexApplication and change above line as-->
+            <!--android:name=".YourCustomApplicationClass"> -->
+
+            ...
+        </application>
+        <uses-permission android:name="android.permission.RECORD_AUDIO" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    </manifest>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "489822899419",
+    "project_id": "handspeech-67e36",
+    "storage_bucket": "handspeech-67e36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489822899419:android:9ec66fb29f1a97906a50fe",
+        "android_client_info": {
+          "package_name": "com.example.hand_speech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489822899419-u5vflrn60otsolbbrmkkj6jl1egiar7v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOOjOE0H00dDBiLrWEG6Wf3zFNJCEK73A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489822899419-u5vflrn60otsolbbrmkkj6jl1egiar7v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
