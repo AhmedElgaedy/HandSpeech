@@ -30,7 +30,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
   ];
 
   List<String> nav = [
-    "letters",
+    "playlist",
     "colors",
     "numbers",
     "letters",

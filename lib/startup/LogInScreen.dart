@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hand_speech/SignupScreen.dart';
+import 'package:hand_speech/startup/SignupScreen.dart';
 import 'package:hand_speech/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hand_speech/resetScreen.dart';
@@ -18,7 +18,7 @@ class _LogInScreenState extends State<LogInScreen> {
   bool _obscureText = true;
 
   checkAuthentification() async {
-    _auth.authStateChanges().listen((user) {
+    _auth.onAuthStateChanged.listen((user) {
       if (user != null) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomeScreen()));
@@ -59,12 +59,12 @@ class _LogInScreenState extends State<LogInScreen> {
                       )),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(280.0, 175.0, 0.0, 0.0),
+                  padding: EdgeInsets.fromLTRB(330.0, 200.0, 0.0, 0.0),
                   child: Text(
                     '.',
                     style: GoogleFonts.abrilFatface(
                         color: Color.fromRGBO(64, 72, 153, 1),
-                        fontSize: 80.0,
+                        fontSize: 60.0,
                         fontWeight: FontWeight.bold),
                   ),
                 )
@@ -224,6 +224,9 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ),
             ],
+          ),
+          SizedBox(
+            height: 20,
           )
         ],
       ),
@@ -235,12 +238,12 @@ class _LogInScreenState extends State<LogInScreen> {
     if (formState.validate()) {
       formState.save();
       try {
-        UserCredential user = await _auth.signInWithEmailAndPassword(
+        FirebaseUser user = await _auth.signInWithEmailAndPassword(
             email: _email, password: _password);
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomeScreen()));
       } catch (e) {
-        showError("e.errormessage");
+        showError("please enter the correct data");
       }
     }
   }

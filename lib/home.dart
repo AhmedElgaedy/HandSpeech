@@ -1,14 +1,14 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hand_speech/LogInScreen.dart';
+import 'package:hand_speech/startup/LogInScreen.dart';
 import 'package:hand_speech/drawer.dart';
-import 'package:hand_speech/ASL/ASLt.dart';
-
-import 'SPEECH/SpeechT.dart';
-
 
 class HomeScreen extends StatefulWidget {
+  File image;
+  HomeScreen({Key key, this.image}) : super(key: key);
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -16,11 +16,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isloggedIn = false;
-  User user;
+  FirebaseUser user;
 
   checkAuthentification() async {
-
-    _auth.authStateChanges().listen((user) {
+    _auth.onAuthStateChanged.listen((user) {
       if (user == null) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => LogInScreen()));
@@ -30,9 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   var userName;
   getUser() async {
-    User firebaseUser = await _auth.currentUser;
+    FirebaseUser firebaseUser = await _auth.currentUser();
     await firebaseUser?.reload();
-    firebaseUser = await _auth.currentUser;
+    firebaseUser = await _auth.currentUser();
 
     if (firebaseUser != null) {
       setState(() {
@@ -77,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: Drawer(
         elevation: 18,
-        child: MainDrawer(),
+        child: MainDrawer(image: widget.image),
       ),
       body: SafeArea(
         bottom: true,
@@ -91,71 +90,6 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Column(
                   children: [
-                    Card(
-                        shadowColor: Color.fromRGBO(247, 173, 174, 1),
-                        elevation: 9,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Container(
-                          height: MediaQuery.of(context).size.height / 5,
-                          width: MediaQuery.of(context).size.width * .75,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: Color.fromRGBO(64, 72, 153, 1),
-                              width: 3,
-                            ),
-                          ),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                               Ink.image(
-                                 image: AssetImage(
-                                   'assets/images/2.jpg',
-                                 ),
-                                 child: InkWell(
-                                   onTap: () {
-                                     Navigator.pushReplacement(
-                                       context, MaterialPageRoute(builder: (context) =>translation()));},
-                                 ),
-                                 height: 240,
-                                fit: BoxFit.cover,
-                               ),
-                              Stack(
-                                children: <Widget>[
-                                  // Stroked text as border.
-                                  Text(
-                                    'ASL Translation',
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      foreground: Paint()
-                                        ..style = PaintingStyle.stroke
-                                        ..strokeWidth = 6
-                                        ..color = Color.fromRGBO(64, 72, 153, 1),
-                                    ),
-                                  ),
-                                  // Solid text as fill.
-                                  Text(
-                                    'ASL Translation',
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      color: Colors.grey[100],
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-
-
-                    SizedBox(
-                      height: 20,
-                    ),
-
-
                     Card(
                       shadowColor: Color.fromRGBO(247, 173, 174, 1),
                       elevation: 9,
@@ -175,17 +109,75 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
-                             Ink.image(
-                               image: AssetImage(
-                                 'assets/images/2.jpg',
-                               ),
-                               child: InkWell(
-                                 onTap: () {  Navigator.pushReplacement(
-                                     context, MaterialPageRoute(builder: (context) =>speechT()));},
-                               ),
-                               height: 240,
-                               fit: BoxFit.cover,
-                           ),
+                            // Ink.image(
+                            //   image: AssetImage(
+                            //     'assets/images/resetpass.png',
+                            //   ),
+                            //   child: InkWell(
+                            //     onTap: () {},
+                            //   ),
+                            //   height: 240,
+                            //   fit: BoxFit.cover,
+                            // ),
+                            Stack(
+                              children: <Widget>[
+                                // Stroked text as border.
+                                Text(
+                                  'ASL Translation',
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    foreground: Paint()
+                                      ..style = PaintingStyle.stroke
+                                      ..strokeWidth = 6
+                                      ..color = Color.fromRGBO(64, 72, 153, 1),
+                                  ),
+                                ),
+                                // Solid text as fill.
+                                Text(
+                                  'ASL Translation',
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.grey[100],
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Card(
+                      shadowColor: Color.fromRGBO(247, 173, 174, 1),
+                      elevation: 9,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 5,
+                        width: MediaQuery.of(context).size.width * .75,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: Color.fromRGBO(64, 72, 153, 1),
+                            width: 3,
+                          ),
+                        ),
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            // Ink.image(
+                            //   image: AssetImage(
+                            //     'assets/images/resetpass.png',
+                            //   ),
+                            //   child: InkWell(
+                            //     onTap: () {},
+                            //   ),
+                            //   height: 240,
+                            //   fit: BoxFit.cover,
+                            // ),
                             Stack(
                               children: <Widget>[
                                 // Stroked text as border.
@@ -213,13 +205,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-
-
                     SizedBox(
                       height: 20,
                     ),
-
-
                     Card(
                       shadowColor: Color.fromRGBO(247, 173, 174, 1),
                       elevation: 9,
@@ -239,16 +227,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
-                             Ink.image(
-                               image: AssetImage(
-                                 'assets/images/2.jpg',
-                              ),
-                              child: InkWell(
-                                 onTap: () {},
-                               ),
-                               height: 240,
-                               fit: BoxFit.cover,
-                             ),
+                            // Ink.image(
+                            //   image: AssetImage(
+                            //     'assets/images/resetpass.png',
+                            //   ),
+                            //   child: InkWell(
+                            //     onTap: () {},
+                            //   ),
+                            //   height: 240,
+                            //   fit: BoxFit.cover,
+                            // ),
                             Stack(
                               children: <Widget>[
                                 // Stroked text as border.
@@ -281,8 +269,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 40,
                 ),
-
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

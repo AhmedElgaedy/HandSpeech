@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hand_speech/dictionaryScreen.dart';
+import 'package:hand_speech/dictionary/dictionaryScreen.dart';
 
 class DictionaryAnimals extends StatefulWidget {
   @override

@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hand_speech/LogInScreen.dart';
+import 'package:hand_speech/startup/LogInScreen.dart';
 
 class ResetScreen extends StatefulWidget {
   @override

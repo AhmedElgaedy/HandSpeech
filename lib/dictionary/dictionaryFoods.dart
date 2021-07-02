@@ -1,40 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:hand_speech/dictionaryScreen.dart';
+import 'package:hand_speech/dictionary/dictionaryScreen.dart';
 
-class DictionaryQuestions extends StatefulWidget {
+class DictionaryFoods extends StatefulWidget {
   @override
-  _DictionaryQuestionsState createState() => _DictionaryQuestionsState();
+  _DictionaryFoodsState createState() => _DictionaryFoodsState();
 }
 
-class _DictionaryQuestionsState extends State<DictionaryQuestions> {
-  List<String> quest = [
-    "who?",
-    "what?",
-    "where?",
-    "when?",
-    "which?",
-    "why?",
-    "how?",
+class _DictionaryFoodsState extends State<DictionaryFoods> {
+  List<String> foods = [
+    "Food",
+    "breakfast",
+    "lunch",
+    "dinner",
+    "need ice",
+    "water-warm",
+    "coffee-strong",
   ];
 
-  List<String> aslquest = [
-    "assets/images/dictionary/questions/who.jpg",
-    "assets/images/dictionary/questions/what.jpg",
-    "assets/images/dictionary/questions/where.jpg",
-    "assets/images/dictionary/questions/when.jpg",
-    "assets/images/dictionary/questions/which.jpg",
-    "assets/images/dictionary/questions/why.jpg",
-    "assets/images/dictionary/questions/how.jpg",
-  ];
-
-  List<String> description = [
-    "With your dominatn hand, place your thumb on your chin and let your index finger wiggle from the joint. The other three fingers curl under.",
-    "Put your hands outward in front of you, with elbows bent and palms up. Shake your hands back and forth towards each other.",
-    "Hold up the index finger of your dominant hand, like you’re indicating “one,” then shake it side to side.",
-    "Put both of your index fingers together at a 90-degree angle at the tips. Your dominant index finger then makes a full circle around the passive index finger and returns to the starting position.",
-    "Make both hands into fists with your thumbs pointing up; alternate each fist in an up-and-down movement.",
-    "Touch the side of your forehead with the fingers of your dominant hand, extend your thumb and pinky (in the Y sign) while you bring your hand down, middle three fingers in, to chest level.",
-    "With fingers pointing downward and backs of fingers and knuckles touching, roll hands inward to your chest and up so that the pinky sides of your hands are touching.",
+  List<String> aslfoods = [
+    "assets/images/dictionary/foods/food.jpg",
+    "assets/images/dictionary/foods/breakfast.jpg",
+    "assets/images/dictionary/foods/lunch.jpg",
+    "assets/images/dictionary/foods/dinner.jpg",
+    "assets/images/dictionary/foods/needice.jpg",
+    "assets/images/dictionary/foods/waterwarm.jpg",
+    "assets/images/dictionary/foods/coffeestrong.jpg",
   ];
 
   int _selectedIndex = 0;
@@ -88,17 +78,10 @@ class _DictionaryQuestionsState extends State<DictionaryQuestions> {
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.white)),
                       child: Image.asset(
-                        aslquest[_selectedIndex],
+                        aslfoods[_selectedIndex],
                         fit: BoxFit.fill,
                       ),
                     )),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    description[_selectedIndex],
-                    style: TextStyle(color: Colors.white),
-                  ),
-                )
               ],
             ),
           ),
@@ -134,7 +117,7 @@ class _DictionaryQuestionsState extends State<DictionaryQuestions> {
                             width: 20,
                             child: Center(
                                 child: Text(
-                              quest[index],
+                              foods[index],
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Color.fromRGBO(64, 72, 153, 1),

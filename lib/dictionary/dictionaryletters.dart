@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hand_speech/dictionaryScreen.dart';
+import 'package:hand_speech/dictionary/dictionaryScreen.dart';
 
 class DictionaryLetters extends StatefulWidget {
   @override
@@ -47,7 +47,7 @@ class _DictionaryLettersState extends State<DictionaryLetters> {
     "assets/images/dictionary/letters/h.gif",
     "assets/images/dictionary/letters/i.gif",
     "assets/images/dictionary/letters/j.gif",
-    "assets/images/dictionary/letters/kasl.jpg",
+    "assets/images/dictionary/letters/kasl.png",
     "assets/images/dictionary/letters/l.gif",
     "assets/images/dictionary/letters/m.gif",
     "assets/images/dictionary/letters/n.gif",

@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/elusive_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hand_speech/home.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -10,13 +13,14 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   String _email, _password, _userName;
-
+  bool _state = true;
+  bool _obscureText = true;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   checkAuthentification() async {
-    _auth.authStateChanges().listen((user) {
+    _auth.onAuthStateChanged.listen((user) {
       if (user != null) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomeScreen()));
@@ -41,7 +45,7 @@ class _SignupScreenState extends State<SignupScreen> {
               child: Stack(
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(15.0, 70.0, 0.0, 0.0),
                     child: Text(
                       'Hand',
                       style: GoogleFonts.abrilFatface(
@@ -61,12 +65,12 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(280.0, 175.0, 0.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(330.0, 200.0, 0.0, 0.0),
                     child: Text(
                       '.',
                       style: GoogleFonts.abrilFatface(
                           color: Color.fromRGBO(64, 72, 153, 1),
-                          fontSize: 80.0,
+                          fontSize: 60.0,
                           fontWeight: FontWeight.bold),
                     ),
                   )
@@ -94,8 +98,6 @@ class _SignupScreenState extends State<SignupScreen> {
                                 fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.bold,
                                 color: Colors.grey),
-                            // hintText: 'EMAIL',
-                            // hintStyle: ,
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Color.fromRGBO(64, 72, 153, 1)))),
@@ -110,16 +112,29 @@ class _SignupScreenState extends State<SignupScreen> {
                         onSaved: (input) {
                           _password = input;
                         },
+                        obscureText: _obscureText,
                         decoration: InputDecoration(
-                            labelText: 'PASSWORD ',
-                            labelStyle: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
-                            focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromRGBO(64, 72, 153, 1)))),
-                        obscureText: true,
+                          labelText: 'PASSWORD ',
+                          labelStyle: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromRGBO(64, 72, 153, 1))),
+                          suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Color.fromRGBO(64, 72, 153, 1),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              }),
+                        ),
                       ),
                       SizedBox(height: 10.0),
                       TextFormField(
@@ -136,7 +151,32 @@ class _SignupScreenState extends State<SignupScreen> {
                                 borderSide: BorderSide(
                                     color: Color.fromRGBO(64, 72, 153, 1)))),
                       ),
-                      SizedBox(height: 50.0),
+                      SizedBox(height: 30.0),
+                      ToggleSwitch(
+                        labels: ["hearing", "deaf"],
+                        minWidth: 120.0,
+                        minHeight: 40.0,
+                        initialLabelIndex: 0,
+                        cornerRadius: 10.0,
+                        activeFgColor: Colors.white,
+                        inactiveBgColor: Colors.grey,
+                        inactiveFgColor: Colors.white,
+                        icons: [
+                          Icons.hearing,
+                          Elusive.asl,
+                        ],
+                        iconSize: 25.0,
+                        activeBgColors: [
+                          Color.fromRGBO(64, 72, 153, 1),
+                          Color.fromRGBO(64, 72, 153, 1)
+                        ],
+                        onToggle: (index) {
+                          _state = index == 0 ? true : false;
+                          print('switched to: $index');
+                          print(_state);
+                        },
+                      ),
+                      SizedBox(height: 30.0),
                       Container(
                           height: 40.0,
                           child: Material(
@@ -187,27 +227,9 @@ class _SignupScreenState extends State<SignupScreen> {
                     ],
                   ),
                 )),
-            // SizedBox(height: 15.0),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: <Widget>[
-            //     Text(
-            //       'New to Spotify?',
-            //       style: TextStyle(
-            //         fontFamily: 'Montserrat',
-            //       ),
-            //     ),
-            //     SizedBox(width: 5.0),
-            //     InkWell(
-            //       child: Text('Register',
-            //           style: TextStyle(
-            //               color: Colors.green,
-            //               fontFamily: 'Montserrat',
-            //               fontWeight: FontWeight.bold,
-            //               decoration: TextDecoration.underline)),
-            //     )
-            //   ],
-            // )
+            SizedBox(
+              height: 20,
+            )
           ]),
     ));
   }
@@ -217,22 +239,20 @@ class _SignupScreenState extends State<SignupScreen> {
     if (formState.validate()) {
       formState.save();
       try {
-        User user =
-            (await FirebaseAuth.instance.createUserWithEmailAndPassword(
-              email: _email,
-              password: _password,
-            ))
-                .user;
-
+        FirebaseUser user = await _auth.createUserWithEmailAndPassword(
+            email: _email, password: _password);
 
         if (user != null) {
-          user.updateProfile(displayName : _userName);
-
+          UserUpdateInfo updateUser = UserUpdateInfo();
+          updateUser.displayName = _userName;
+          user.updateProfile(updateUser);
+          Firestore.instance.collection('users').document(user.uid).setData(
+              {'username': _userName, 'email': _email, 'state': _state});
         }
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomeScreen()));
       } catch (e) {
-        showError("e.errormessage");
+        showError("please try again , check your information!");
       }
     }
   }

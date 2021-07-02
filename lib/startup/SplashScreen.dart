@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:hand_speech/LogInScreen.dart';
+import 'package:hand_speech/startup/firstScreen.dart';
 
 void main() {
   runApp(SplashScreen());
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Timer(Duration(seconds: 5), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LogInScreen()));
+          context, MaterialPageRoute(builder: (context) => FirstLoginPage()));
     });
     super.initState();
   }
@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             SpinKitThreeBounce(
               color: Color.fromRGBO(64, 72, 153, 1),
-
+              width: 50.0,
             ),
           ]),
     );
