@@ -1,9 +1,6 @@
-import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:microphone/microphone.dart';
-import 'package:hand_speech/SPEECH/Recording.dart';
 import '../home.dart';
 
 
@@ -18,11 +15,15 @@ class speechT extends StatefulWidget {
 class _speechTState extends State<speechT> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      appBar:AppBar(
+
+        backgroundColor:Colors.white,
+
+        appBar:AppBar(
         elevation: 0,
-      backgroundColor: Color.fromARGB(0, 0, 0, 1),
-      leading:
+        backgroundColor: Color.fromARGB(0, 0, 0, 1),
+        leading:
         IconButton(
             onPressed: (){Navigator.push(
                 context,
@@ -30,21 +31,20 @@ class _speechTState extends State<speechT> {
                     builder: (context) => HomeScreen()));},
             icon: Icon(Icons.arrow_back_ios_sharp,color: Color.fromRGBO(64, 72, 153, 1),)),
         title: Text(
-        "Hand Speech",
-        style:
-        GoogleFonts.abrilFatface(color: Color.fromRGBO(64, 72, 153, 1)),
+          "Hand Speech",
+          style:
+          GoogleFonts.abrilFatface(color: Color.fromRGBO(64, 72, 153, 1)),
+        ),
       ),
-      ) ,
-      backgroundColor:Colors.white,
-      body:
-      SafeArea(
+
+      body: SafeArea(
         top:true,
         bottom: true ,
         left: true ,
         right: true,
-        child: Column(
+          child: Column(
 
-          children: [
+           children: [
             SizedBox(
               height: MediaQuery.of(context).size.height/9,
             ),
@@ -59,14 +59,24 @@ class _speechTState extends State<speechT> {
                   borderRadius: BorderRadius.circular(10),
 
                 ),
-                child:Recodingclass(),
+                child:Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    FloatingActionButton(onPressed: (){},
+                        backgroundColor: Colors.white,
+                      child:  Icon(Icons.mic_rounded,color: Color.fromRGBO(64, 72, 153, 1),),
 
+                    )
+                  ],
+                ),
               ),
             ),
+
 
             SizedBox(
               height: MediaQuery.of(context).size.height/9,
             ),
+
 
            Align(
            alignment: Alignment.center,
@@ -79,12 +89,13 @@ class _speechTState extends State<speechT> {
                borderRadius: BorderRadius.circular(10),
 
              ),
-             child:Recodingclass(),
+             child:Text('d')
            ),
            ),
+
                ],
              ),
-           ) ,
+           )
 
     );
   }

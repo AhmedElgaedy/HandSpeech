@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hand_speech/Both/MainBoth.dart';
 import 'package:hand_speech/LogInScreen.dart';
 import 'package:hand_speech/drawer.dart';
 import 'package:hand_speech/ASL/ASLt.dart';
@@ -244,8 +245,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                  'assets/images/2.jpg',
                               ),
                               child: InkWell(
-                                 onTap: () {},
-                               ),
+                                onTap: () {  Navigator.pushReplacement(
+                                    context, MaterialPageRoute(builder: (context) =>bothT()));},
+                              ),
                                height: 240,
                                fit: BoxFit.cover,
                              ),
